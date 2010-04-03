@@ -37,7 +37,7 @@ module Heroku::Command
     end
 
     def extract_app(force=true)
-      app = extract_option('--app')
+      app = extract_option('--app') || ENV["HEROKU_APP"]
       unless app
         app = extract_app_in_dir(Dir.pwd) ||
         raise(CommandFailed, "No app specified.\nRun this command from app folder or set it adding --app <app name>") if force
